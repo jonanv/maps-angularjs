@@ -53,6 +53,15 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ***
 
+# Create file od module with comand --flat (create file in /app)
+```javascript
+ng generate module material --flat
+```
+or
+```javascript
+ng g m material --flat
+```
+
 # Server local
 install global ```sudo npm i -g http-server```
 
