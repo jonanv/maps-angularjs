@@ -62,6 +62,15 @@ or
 ng g m material --flat
 ```
 
+# Create component for specific module without file .spec and .css
+```javascript
+ng generate component components/map --module=app.module --skipTests -is
+```
+or
+```javascript
+ng generate component components/map --module=app.module --skipTests -is 
+```
+
 # Server local
 install global ```sudo npm i -g http-server```
 
