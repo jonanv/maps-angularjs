@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 // Angular Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
-import { MapComponent } from './components/map/map.component';
+
+// Components
+import { MapWebComponent } from './components/map-web/map-web.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent
+    MapWebComponent,
   ],
   imports: [
     BrowserModule,
