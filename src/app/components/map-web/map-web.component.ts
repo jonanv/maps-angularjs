@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 
 @Component({
   selector: 'app-map-web',
@@ -8,8 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapWebComponent implements OnInit {
 
+  @ViewChild(MapInfoWindow, {static: false}) infoWindow: MapInfoWindow;
+
   title: string = 'gmaps';
-  zoom: number = 4;
+  zoom: number = 6;
 
   position = {
     lat: 51.678418,
@@ -21,10 +25,13 @@ export class MapWebComponent implements OnInit {
     text: 'Marcador'
   }
 
-
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  openInfoWindow(marker: MapMarker) {
+    this.infoWindow.open(marker);
   }
 
 }

@@ -3,7 +3,14 @@
     <mat-card-content>
 
         <google-map width="100%" height="500px" [center]="position" [zoom]="zoom">
-            <map-marker [position]="position" [label]="label" [title]="title"></map-marker>
+            <map-marker #marker [position]="position" [label]="label" [title]="title" (mapClick)="openInfoWindow(marker)"></map-marker>
+            <map-info-window>
+                <p>Info windows content</p>
+                <div>
+                    <button mat-raised-button color="primary">Editar</button>
+                    <button mat-raised-button color="warn">Borrar</button>
+                </div>
+            </map-info-window>
         </google-map>
 
     </mat-card-content>
