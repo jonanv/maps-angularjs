@@ -9,6 +9,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 
+// Angular Google Maps
+import { GoogleMapsModule } from "@angular/google-maps";
+
 // Components
 import { MapWebComponent } from './components/map-web/map-web.component';
 
@@ -21,7 +24,8 @@ import { MapWebComponent } from './components/map-web/map-web.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
