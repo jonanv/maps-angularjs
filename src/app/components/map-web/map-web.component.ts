@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class MapWebComponent implements OnInit {
 
   title: string = 'gmaps';
+  zoom: number = 4;
 
   position = {
     lat: 51.678418,
