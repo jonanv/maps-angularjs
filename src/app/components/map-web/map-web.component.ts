@@ -8,6 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapWebComponent implements OnInit {
 
+  title: string = 'gmaps';
+
+  position = {
+    lat: 51.678418,
+    lng: 7.809007
+  }
+
+  label = {
+    color: 'blue',
+    text: 'Marcador'
+  }
+
+
   constructor() { }
 
   ngOnInit(): void {

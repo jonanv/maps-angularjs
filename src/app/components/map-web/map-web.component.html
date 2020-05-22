@@ -2,9 +2,8 @@
     <mat-card-title>Mapa</mat-card-title>
     <mat-card-content>
 
-        <google-map width="875" height="500">
-            <!-- [center]="position" -->
-            <!-- <map-marker [position]="position" [label]="label" [title]="title"></map-marker> -->
+        <google-map width="100%" height="500px" [center]="position">
+            <map-marker [position]="position" [label]="label" [title]="title"></map-marker>
         </google-map>
 
     </mat-card-content>
