@@ -1,7 +1,16 @@
 <mat-toolbar color="primary">
     <span>Mapas</span>
+
+    <section>
+        <div class="example-button-row">
+            <button mat-raised-button color="primary" [routerLink]="['/map-google']">Google</button>
+            <button mat-raised-button color="warn" [routerLink]="['/map-leaflet']">Leaflet</button>
+        </div>
+    </section>
 </mat-toolbar>
 
 <div class="main-container">
-    <app-map-web></app-map-web>
+
+    <router-outlet></router-outlet>
+
 </div>

@@ -16,17 +16,17 @@ body {
 }
 
 .map-wrapper {
-    position: absolute;
+    /* position: absolute; */
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 20px;
-    /* height: 300px; */
+    /* margin: 20px; */
+    height: 500px;
 }
 
 .map-border {
-    border: 5px solid orange;
+    border: 2px solid orange;
     height: 100%;
 }
 

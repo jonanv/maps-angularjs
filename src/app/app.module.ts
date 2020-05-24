@@ -14,11 +14,13 @@ import { GoogleMapsModule } from "@angular/google-maps";
 
 // Components
 import { MapWebComponent } from './components/map-web/map-web.component';
+import { MapLeafletComponent } from './components/map-leaflet/map-leaflet.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapWebComponent,
+    MapLeafletComponent,
   ],
   imports: [
     BrowserModule,
