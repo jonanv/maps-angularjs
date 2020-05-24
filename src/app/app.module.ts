@@ -16,6 +16,7 @@ import { GoogleMapsModule } from "@angular/google-maps";
 import { MapGoogleComponent } from './components/map-google/map-google.component';
 import { MapLeafletComponent } from './components/map-leaflet/map-leaflet.component';
 import { MapMapboxComponent } from './components/map-mapbox/map-mapbox.component';
+import { MapMapBox3dComponent } from './components/map-map-box3d/map-map-box3d.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MapMapboxComponent } from './components/map-mapbox/map-mapbox.component
     MapGoogleComponent,
     MapLeafletComponent,
     MapMapboxComponent,
+    MapMapBox3dComponent,
   ],
   imports: [
     BrowserModule,

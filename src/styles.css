@@ -40,7 +40,8 @@ body {
 
 /************************ Mapbox ************************/
 
-#map-mapbox {
+#map-mapbox,
+#map-mapbox-3d {
     width: 100%;
     height: 450px;
 }
