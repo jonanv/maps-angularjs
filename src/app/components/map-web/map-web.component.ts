@@ -13,37 +13,50 @@ export class MapWebComponent implements OnInit {
 
   @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow;
 
-  markers: Marker[] = [];
+  center = { lat: 5.073379, lng: -75.499002 };
+  markerOptions = { draggable: false };
+  // markerPositions: google.maps.LatLngLiteral[] = [];
+  markerPositions: Marker[] = [
+    // { title: "Sin título", description: "Sin descripción", lat: 4.460275600752171, lng: -71.8515410625 },
+    // { title: "Sin título", description: "Sin descripción", lat: 6.996165055279171, lng: -77.08103325 },
+    // { title: "Sin título", description: "Sin descripción", lat: 5.860790060652973, lng: -69.9179473125 },
+    // { title: "Sin título", description: "Sin descripción", lat: 5.13903536496996, lng: -76.5536895 }
+  ];
+  zoom = 7;
+  display?: google.maps.LatLngLiteral;
 
   title: string = 'gmaps';
-  zoom: number = 6;
-
-  position = {
-    lat: 5.073379,
-    lng: -75.499002
-  }
-
   label = {
     color: 'blue',
     text: 'Marcador'
   }
 
   constructor() {
-    const newMarker = new Marker(51.678418, 7.809007);
-    console.log(newMarker);
-    this.markers.push(newMarker);
   }
 
   ngOnInit(): void {
+    let newMarker = new Marker(this.center.lat, this.center.lng);
+    this.markerPositions.push(newMarker);
+  }
+
+  addMarker(event: google.maps.MouseEvent) {
+    // this.markers.push(event.latLng.toJSON());
+    let newMarker = new Marker(event.latLng.lat(), event.latLng.lng());
+    this.markerPositions.push(newMarker);
+    console.log(this.markerPositions);
+  }
+
+  move(event: google.maps.MouseEvent) {
+    this.display = event.latLng.toJSON();
   }
 
   openInfoWindow(marker: MapMarker) {
-    console.log(marker);
     this.infoWindow.open(marker);
   }
 
-  addMarker(event: Event) {
-    console.log(event);
+  removeLastMarker() {
+    this.markerPositions.pop();
   }
+
 
 }

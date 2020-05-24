@@ -2,19 +2,23 @@
     <mat-card-title>Mapa</mat-card-title>
     <mat-card-content>
 
-        <google-map width="100%" height="500px" [center]="position" [zoom]="zoom" (mapClick)="addMarker($event)">
-            <map-marker #marker [position]="position" [label]="label" [title]="title" (mapClick)="openInfoWindow(marker)">
+        <google-map width="100%" height="450px" [center]="center" [zoom]="zoom" (mapClick)="addMarker($event)" (mapMousemove)="move($event)" (mapRightclick)="removeLastMarker()">
+            <map-marker #marker *ngFor="let markerPosition of markerPositions, let i = index" [position]="markerPosition" [options]="markerOptions" (mapClick)="openInfoWindow(marker)">
+                <!-- [label]="label" [title]="title" -->
                 <map-info-window>
-                    <p>Info windows content</p>
-                    <p>Info windows description</p>
+                    <p>{{ markerPosition.title }} {{ i }}</p>
+                    <p>{{ markerPosition.description }} {{ i }}</p>
+                    <p>lat: {{ markerPosition.lat }}, lng: {{ markerPosition.lng }}</p>
                     <div>
                         <button mat-raised-button color="primary">Editar</button>
                         <button mat-raised-button color="warn">Borrar</button>
                     </div>
                 </map-info-window>
             </map-marker>
-
         </google-map>
+
+        <div>Latitude: {{ display?.lat }}</div>
+        <div>Longitude: {{ display?.lng }}</div>
 
     </mat-card-content>
 </mat-card>
