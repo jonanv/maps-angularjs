@@ -15,13 +15,7 @@ export class MapWebComponent implements OnInit {
 
   center = { lat: 5.073379, lng: -75.499002 };
   markerOptions = { draggable: false };
-  // markerPositions: google.maps.LatLngLiteral[] = [];
-  markerPositions: Marker[] = [
-    // { title: "Sin título", description: "Sin descripción", lat: 4.460275600752171, lng: -71.8515410625 },
-    // { title: "Sin título", description: "Sin descripción", lat: 6.996165055279171, lng: -77.08103325 },
-    // { title: "Sin título", description: "Sin descripción", lat: 5.860790060652973, lng: -69.9179473125 },
-    // { title: "Sin título", description: "Sin descripción", lat: 5.13903536496996, lng: -76.5536895 }
-  ];
+  markerPositions: Marker[] = [];
   zoom = 7;
   display?: google.maps.LatLngLiteral;
 
@@ -34,25 +28,28 @@ export class MapWebComponent implements OnInit {
   constructor() {
     // let newMarker = new Marker(this.center.lat, this.center.lng);
     // this.markerPositions.push(newMarker);
-    let markerPositions = localStorage.getItem('markerPositions') ? JSON.parse(localStorage.getItem('markerPositions')) : null;
-    if(markerPositions) {
-      this.markerPositions = markerPositions;
-    }
 
+    this.loadMarker();
   }
 
   ngOnInit(): void {
   }
 
+  loadMarker() {
+    let markerPositions = localStorage.getItem('markerPositions') ? JSON.parse(localStorage.getItem('markerPositions')) : null;
+    if(markerPositions) {
+      this.markerPositions = markerPositions;
+    }
+  }
+
   addMarker(event: google.maps.MouseEvent) {
-    // this.markers.push(event.latLng.toJSON());
     const coords: { lat: number, lng: number } = event.latLng.toJSON();
     let newMarker = new Marker(coords.lat, coords.lng);
     this.markerPositions.push(newMarker);
 
     console.log(this.markerPositions);
 
-    this.saveMarker();
+    // this.saveMarker();
   }
 
   move(event: google.maps.MouseEvent) {
@@ -60,11 +57,19 @@ export class MapWebComponent implements OnInit {
   }
 
   openInfoWindow(marker: MapMarker) {
+    console.log(marker.getPosition().toJSON());
     this.infoWindow.open(marker);
   }
 
   removeLastMarker() {
     this.markerPositions.pop();
+  }
+
+  deleteMarker(i: number) {
+    // TODO: siempre envia la referencia #marker y la posicion 0, debe enviar el markerPosition
+    console.log(i);
+    // this.markerPositions.slice(i, 1);
+    // this.saveMarker();
   }
 
   saveMarker() {
