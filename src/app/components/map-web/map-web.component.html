@@ -2,16 +2,25 @@
     <mat-card-title>Mapa</mat-card-title>
     <mat-card-content>
 
-        <google-map width="100%" height="500px" [center]="position" [zoom]="zoom">
-            <map-marker #marker [position]="position" [label]="label" [title]="title" (mapClick)="openInfoWindow(marker)"></map-marker>
-            <map-info-window>
-                <p>Info windows content</p>
-                <div>
-                    <button mat-raised-button color="primary">Editar</button>
-                    <button mat-raised-button color="warn">Borrar</button>
-                </div>
-            </map-info-window>
-        </google-map>
+        <!-- <google-map width="100%" height="500px" [center]="position" [zoom]="zoom" (mapClick)="addMarker($event)">
+            <map-marker #marker [position]="position" [label]="label" [title]="title" (mapClick)="openInfoWindow(marker)">
+                <map-info-window>
+                    <p>Info windows content</p>
+                    <p>Info windows description</p>
+                    <div>
+                        <button mat-raised-button color="primary">Editar</button>
+                        <button mat-raised-button color="warn">Borrar</button>
+                    </div>
+                </map-info-window>
+            </map-marker>
+
+        </google-map> -->
 
     </mat-card-content>
 </mat-card>
+
+<div class="map-wrapper">
+    <div class="map-border">
+        <div id="map"></div>
+    </div>
+</div>
