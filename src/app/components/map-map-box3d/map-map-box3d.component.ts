@@ -20,10 +20,28 @@ export class MapMapBox3dComponent implements OnInit {
 
   ngOnInit(): void {
     this.createMap();
-    // this.createMarker(-75.499002, 5.073379);
+    this.createMarker(-75.499002, 5.073379);
+    this.loadBuildings();
+  }
 
+  createMap() {
+    (Mapboxgl as any).accessToken = environment.mapboxKey;
+
+    this.map = new Mapboxgl.Map({
+      container: 'map-mapbox-3d', // container id
+      style: 'mapbox://styles/mapbox/light-v10',
+      center: [-75.499002, 5.073379], // starting position [LNG, LAT]
+      zoom: 17,
+      // center: [-74.0066, 40.7135],
+      // zoom: 15.5,
+      pitch: 45,
+      bearing: -17.6,
+      antialias: true
+    });
+  }
+
+  loadBuildings() {
     this.map.on('load', () => {
-      // Insert the layer beneath any symbol layer.
       var layers = this.map.getStyle().layers;
 
       var labelLayerId;
@@ -73,18 +91,18 @@ export class MapMapBox3dComponent implements OnInit {
     });
   }
 
-  createMap() {
-    (Mapboxgl as any).accessToken = environment.mapboxKey;
+  createMarker(lng: number, lat: number) {
+    var marker = new Mapboxgl.Marker({
+      draggable: true
+    })
+      .setLngLat([lng, lat])
+      .addTo(this.map);
 
-    this.map = new Mapboxgl.Map({
-      container: 'map-mapbox-3d', // container id
-      style: 'mapbox://styles/mapbox/light-v10',
-      center: [-75.499002, 5.073379], // starting position [LNG, LAT]
-      zoom: 17,
-      pitch: 45,
-      bearing: -17.6,
-      antialias: true
+    var coordinates = document.getElementById('coordinates-3d');
+    marker.on('dragend', () => {
+      var lngLat = marker.getLngLat();
+      coordinates.style.display = 'block';
+      coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
     });
   }
-
 }
