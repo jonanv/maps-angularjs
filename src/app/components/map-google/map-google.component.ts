@@ -4,12 +4,12 @@ import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Marker } from '../../classes/marker.class';
 
 @Component({
-  selector: 'app-map-web',
-  templateUrl: './map-web.component.html',
+  selector: 'app-map-google',
+  templateUrl: './map-google.component.html',
   styles: [
   ]
 })
-export class MapWebComponent implements OnInit {
+export class MapGoogleComponent implements OnInit {
 
   @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow;
 

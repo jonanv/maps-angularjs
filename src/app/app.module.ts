@@ -13,13 +13,13 @@ import { MaterialModule } from './material.module';
 import { GoogleMapsModule } from "@angular/google-maps";
 
 // Components
-import { MapWebComponent } from './components/map-web/map-web.component';
+import { MapGoogleComponent } from './components/map-google/map-google.component';
 import { MapLeafletComponent } from './components/map-leaflet/map-leaflet.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapWebComponent,
+    MapGoogleComponent,
     MapLeafletComponent,
   ],
   imports: [
