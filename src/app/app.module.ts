@@ -15,12 +15,14 @@ import { GoogleMapsModule } from "@angular/google-maps";
 // Components
 import { MapGoogleComponent } from './components/map-google/map-google.component';
 import { MapLeafletComponent } from './components/map-leaflet/map-leaflet.component';
+import { MapMapboxComponent } from './components/map-mapbox/map-mapbox.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapGoogleComponent,
     MapLeafletComponent,
+    MapMapboxComponent,
   ],
   imports: [
     BrowserModule,
