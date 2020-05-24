@@ -6,7 +6,7 @@
             <map-marker #marker *ngFor="let markerPosition of markerPositions, let i = index" [position]="markerPosition" [options]="markerOptions" (mapClick)="openInfoWindow(marker)">
                 <!-- [label]="label" [title]="title" -->
                 <map-info-window>
-                    <p>{{ markerPosition.title }} {{ i }}</p>
+                    <p><b>{{ markerPosition.title }} {{ i }}</b></p>
                     <p>{{ markerPosition.description }} {{ i }}</p>
                     <p>lat: {{ markerPosition.lat }}, lng: {{ markerPosition.lng }}</p>
                     <div>

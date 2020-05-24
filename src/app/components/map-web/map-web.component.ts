@@ -32,18 +32,27 @@ export class MapWebComponent implements OnInit {
   }
 
   constructor() {
+    // let newMarker = new Marker(this.center.lat, this.center.lng);
+    // this.markerPositions.push(newMarker);
+    let markerPositions = localStorage.getItem('markerPositions') ? JSON.parse(localStorage.getItem('markerPositions')) : null;
+    if(markerPositions) {
+      this.markerPositions = markerPositions;
+    }
+
   }
 
   ngOnInit(): void {
-    let newMarker = new Marker(this.center.lat, this.center.lng);
-    this.markerPositions.push(newMarker);
   }
 
   addMarker(event: google.maps.MouseEvent) {
     // this.markers.push(event.latLng.toJSON());
-    let newMarker = new Marker(event.latLng.lat(), event.latLng.lng());
+    const coords: { lat: number, lng: number } = event.latLng.toJSON();
+    let newMarker = new Marker(coords.lat, coords.lng);
     this.markerPositions.push(newMarker);
+
     console.log(this.markerPositions);
+
+    this.saveMarker();
   }
 
   move(event: google.maps.MouseEvent) {
@@ -58,5 +67,8 @@ export class MapWebComponent implements OnInit {
     this.markerPositions.pop();
   }
 
+  saveMarker() {
+    localStorage.setItem('markerPositions', JSON.stringify(this.markerPositions));
+  }
 
 }
