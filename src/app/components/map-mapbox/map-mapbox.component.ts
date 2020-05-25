@@ -13,13 +13,16 @@ import * as Mapboxgl from 'mapbox-gl';
 export class MapMapboxComponent implements OnInit {
 
   map: Mapboxgl.Map;
+  markers: Mapboxgl.Marker[] = [];
 
   constructor() {
   }
 
   ngOnInit(): void {
     this.createMap();
+    this.mouseMove();
     this.createMarker(-75.499002, 5.073379);
+    this.addMarker();
   }
 
   createMap() {
@@ -33,20 +36,40 @@ export class MapMapboxComponent implements OnInit {
     });
   }
 
+  mouseMove() {
+    this.map.on('mousemove', (event) => {
+      let coordinates = document.getElementById('coordinates');
+      coordinates.style.display = 'block';
+      coordinates.innerHTML = 'Longitude: ' + event.lngLat.lng + '<br />Latitude: ' + event.lngLat.lat;
+    });
+  }
+
   createMarker(lng: number, lat: number) {
-    var marker = new Mapboxgl.Marker({
+    let coordinates = document.getElementById('coordinates-marker');
+    coordinates.style.display = 'block';
+    coordinates.innerHTML = 'Longitude: ' + lng + '<br />Latitude: ' + lat;
+
+    let marker = new Mapboxgl.Marker({
+      color: 'blue',
       draggable: true
     })
-      .setLngLat([lng, lat])
-      .addTo(this.map);
+    .setLngLat([lng, lat])
+    .addTo(this.map);
 
-    var coordinates = document.getElementById('coordinates');
     marker.on('dragend', () => {
-      var lngLat = marker.getLngLat();
+      let lngLat = marker.getLngLat();
       coordinates.style.display = 'block';
       coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
     });
   }
 
+  addMarker() {
+    this.map.on('click', (event) => {
+      let marker = new Mapboxgl.Marker()
+        .setLngLat(event.lngLat)
+        .addTo(this.map);
 
+      this.markers.push(marker);
+    });
+  }
 }
