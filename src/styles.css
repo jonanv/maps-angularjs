@@ -25,11 +25,11 @@ body {
     right: 0;
     bottom: 0;
     /* margin: 20px; */
-    height: 500px;
+    height: 450px;
 }
 
 .map-border {
-    border: 2px solid orange;
+    /* border: 2px solid orange; */
     height: 100%;
 }
 

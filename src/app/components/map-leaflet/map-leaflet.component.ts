@@ -11,7 +11,6 @@ import * as L from 'leaflet';
 export class MapLeafletComponent implements OnInit {
 
   map;
-
   smallIcon = new L.Icon({
     iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon.png',
     iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon-2x.png',
@@ -21,18 +20,17 @@ export class MapLeafletComponent implements OnInit {
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     shadowSize: [41, 41]
   });
+  markers: L.LeafletMouseEvent[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
     this.createMap();
+    this.addMarker();
   }
 
   createMap() {
     const parcThabor = {
-      // lat: 48.114384,
-      // lng: -1.669494
-
       lat: 5.073379,
       lng: -75.499002
     };
@@ -50,29 +48,47 @@ export class MapLeafletComponent implements OnInit {
     });
 
     mainLayer.addTo(this.map);
-
-    const descriptionWikipedia = `Le parc du Thabor, situé à Rennes à proximité du centre-ville,
-      est un parc public aménagé sur plus de dix hectares dont la particularité est de mêler un jardin à la française,
-      un jardin à l’anglaise et un important jardin botanique.`;
-    const popupOptions = {
-      coords: parcThabor,
-      text: descriptionWikipedia,
-      open: true
-    };
-    this.addMarker(popupOptions);
   }
 
-  addMarker({ coords, text, open }) {
+  private createPopup(latlng) {
+    const descriptionWikipedia = `
+      lat: ${latlng.lat}, lng: ${latlng.lng}
+      <button mat-raised-button color="primary">Editar</button>
+      <button mat-raised-button color="warn">Eliminar</button>
+    `;
+    const popupOptions = {
+      coords: latlng,
+      text: descriptionWikipedia,
+      open: false
+    };
+    return popupOptions;
+  }
+
+  private createMarker(latlng: any) {
+    const popupOptions: { coords, text, open } = this.createPopup(latlng);
     const marker = L.marker(
-      [coords.lat, coords.lng],
+      [popupOptions.coords.lat, popupOptions.coords.lng],
       { icon: this.smallIcon }
     );
 
-    if (open) {
-      marker.addTo(this.map).bindPopup(text).openPopup();
+    if (popupOptions.open) {
+      marker.addTo(this.map).bindPopup(popupOptions.text).openPopup();
     } else {
-      marker.addTo(this.map).bindPopup(text);
+      marker.addTo(this.map).bindPopup(popupOptions.text);
     }
+  }
+
+  addMarker() {
+    this.map.on('click', (event: L.LeafletMouseEvent) => {
+      console.log(event);
+      this.createMarker(event.latlng);
+      this.markers.push(event);
+      console.log(this.markers);
+    });
+  }
+
+  removeMarker(i: number) {
+    console.log(i);
   }
 
 }
