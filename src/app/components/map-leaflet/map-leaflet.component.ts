@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import * as L from 'leaflet';
+import { Marker } from '../../classes/marker.class';
 
 @Component({
   selector: 'app-map-leaflet',
@@ -20,7 +21,7 @@ export class MapLeafletComponent implements OnInit {
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     shadowSize: [41, 41]
   });
-  markers: L.LeafletMouseEvent[] = [];
+  markers: Marker[] = [];
 
   constructor() { }
 
@@ -56,6 +57,7 @@ export class MapLeafletComponent implements OnInit {
       <button mat-raised-button color="primary">Editar</button>
       <button mat-raised-button color="warn">Eliminar</button>
     `;
+    // TODO: los botones deben de estar del lado del HTML para ejecutar el remove y dentro de un ng-for
     const popupOptions = {
       coords: latlng,
       text: descriptionWikipedia,
@@ -81,8 +83,12 @@ export class MapLeafletComponent implements OnInit {
   addMarker() {
     this.map.on('click', (event: L.LeafletMouseEvent) => {
       console.log(event);
+      // TODO: hacer el marcador con la clase Marker y crear el objeto aca para envairlo a this.createMarker
+      let marker = new Marker(event.latlng.lat, event.latlng.lat);
+
       this.createMarker(event.latlng);
-      this.markers.push(event);
+
+      this.markers.push(marker);
       console.log(this.markers);
     });
   }
