@@ -53,8 +53,8 @@ export class MapMapboxComponent implements OnInit {
       color: 'blue',
       draggable: true
     })
-    .setLngLat([lng, lat])
-    .addTo(this.map);
+      .setLngLat([lng, lat])
+      .addTo(this.map);
 
     marker.on('dragend', () => {
       let lngLat = marker.getLngLat();
@@ -65,10 +65,16 @@ export class MapMapboxComponent implements OnInit {
 
   addMarker() {
     this.map.on('click', (event) => {
+      let popup = new Mapboxgl.Popup()
+        .setHTML('<p>' + 'lng: ' + event.lngLat.lng + ', lat: ' + event.lngLat.lat + '</p>')
+
+
       let marker = new Mapboxgl.Marker()
         .setLngLat(event.lngLat)
+        .setPopup(popup)
         .addTo(this.map);
 
+      marker.togglePopup();
       this.markers.push(marker);
     });
   }
