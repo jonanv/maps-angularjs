@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Marker } from '../../classes/marker.class';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-map-google',
@@ -28,7 +29,9 @@ export class MapGoogleComponent implements OnInit {
   markerLocation: Marker;
   markerArray: number;
 
-  constructor() {
+  constructor(
+    private snackBar: MatSnackBar
+  ) {
     // let newMarker = new Marker(this.center.lat, this.center.lng);
     // this.markerPositions.push(newMarker);
 
@@ -40,7 +43,7 @@ export class MapGoogleComponent implements OnInit {
 
   loadMarker() {
     let markerPositions = localStorage.getItem('markerPositions') ? JSON.parse(localStorage.getItem('markerPositions')) : null;
-    if(markerPositions) {
+    if (markerPositions) {
       this.markerPositions = markerPositions;
     }
   }
@@ -53,6 +56,7 @@ export class MapGoogleComponent implements OnInit {
     console.log(this.markerPositions);
 
     this.saveMarker();
+    this.snackBar.open('Marcador agregado', 'Cerrar');
   }
 
   move(event: google.maps.MouseEvent) {
@@ -76,6 +80,7 @@ export class MapGoogleComponent implements OnInit {
     console.log(i);
     this.markerPositions.splice(i, 1);
     this.saveMarker();
+    this.snackBar.open('Marcador borrado', 'Cerrar');
   }
 
   saveMarker() {
