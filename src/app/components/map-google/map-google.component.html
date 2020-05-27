@@ -3,15 +3,15 @@
     <mat-card-content>
 
         <google-map width="100%" height="450px" [center]="center" [zoom]="zoom" (mapClick)="addMarker($event)" (mapMousemove)="move($event)" (mapRightclick)="removeLastMarker()">
-            <map-marker #marker *ngFor="let markerPosition of markerPositions; let i = index" [position]="markerPosition" [options]="markerOptions" (mapClick)="openInfoWindow(marker)">
+            <map-marker #marker *ngFor="let markerPosition of markerPositions; let i = index" [position]="markerPosition" [options]="markerOptions" (mapClick)="openInfoWindow(marker, markerPosition, i)">
                 <!-- [label]="label" [title]="title" -->
                 <map-info-window>
-                    <p><b>{{ markerPosition.title }} {{ i }}</b></p>
-                    <p>{{ markerPosition.description }} {{ i }}</p>
-                    <p>lat: {{ markerPosition.lat }}, lng: {{ markerPosition.lng }}</p>
+                    <p><b>{{ markerLocation?.title }} {{ markerArray }}</b></p>
+                    <p>{{ markerLocation?.description }} {{ markerArray }}</p>
+                    <p>lat: {{ markerLocation?.lat }}, lng: {{ markerLocation?.lng }}</p>
                     <div>
                         <button mat-raised-button color="primary">Editar</button>
-                        <button mat-raised-button color="warn" (click)="deleteMarker(i)">Borrar</button>
+                        <button mat-raised-button color="warn" (click)="deleteMarker(markerArray)">Borrar</button>
                     </div>
                 </map-info-window>
             </map-marker>

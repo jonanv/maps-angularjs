@@ -78,6 +78,7 @@ export class MapLeafletComponent implements OnInit {
     } else {
       marker.addTo(this.map).bindPopup(popupOptions.text);
     }
+    // marker.remove();
   }
 
   addMarker() {

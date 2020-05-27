@@ -25,6 +25,9 @@ export class MapGoogleComponent implements OnInit {
     text: 'Marcador'
   }
 
+  markerLocation: Marker;
+  markerArray: number;
+
   constructor() {
     // let newMarker = new Marker(this.center.lat, this.center.lng);
     // this.markerPositions.push(newMarker);
@@ -49,15 +52,19 @@ export class MapGoogleComponent implements OnInit {
 
     console.log(this.markerPositions);
 
-    // this.saveMarker();
+    this.saveMarker();
   }
 
   move(event: google.maps.MouseEvent) {
     this.display = event.latLng.toJSON();
   }
 
-  openInfoWindow(marker: MapMarker) {
-    console.log(marker.getPosition().toJSON());
+  openInfoWindow(marker: MapMarker, markerPosition: Marker, i: number) {
+    // console.log(marker.getPosition().toJSON());
+    // console.log(markerPosition);
+    // console.log(i);
+    this.markerLocation = markerPosition;
+    this.markerArray = i;
     this.infoWindow.open(marker);
   }
 
@@ -66,10 +73,9 @@ export class MapGoogleComponent implements OnInit {
   }
 
   deleteMarker(i: number) {
-    // TODO: siempre envia la referencia #marker y la posicion 0, debe enviar el markerPosition
     console.log(i);
-    // this.markerPositions.slice(i, 1);
-    // this.saveMarker();
+    this.markerPositions.splice(i, 1);
+    this.saveMarker();
   }
 
   saveMarker() {
