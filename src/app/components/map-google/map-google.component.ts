@@ -56,7 +56,7 @@ export class MapGoogleComponent implements OnInit {
     console.log(this.markerPositions);
 
     this.saveMarker();
-    this.snackBar.open('Marcador agregado', 'Cerrar');
+    this.snackBar.open('Marcador agregado', 'Cerrar', { duration: 3000 });
   }
 
   move(event: google.maps.MouseEvent) {
@@ -80,7 +80,7 @@ export class MapGoogleComponent implements OnInit {
     console.log(i);
     this.markerPositions.splice(i, 1);
     this.saveMarker();
-    this.snackBar.open('Marcador borrado', 'Cerrar');
+    this.snackBar.open('Marcador borrado', 'Cerrar', { duration: 3000 });
   }
 
   saveMarker() {
