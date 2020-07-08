@@ -84,8 +84,7 @@ export class MapLeafletComponent implements OnInit {
   addMarker() {
     this.map.on('click', (event: L.LeafletMouseEvent) => {
       console.log(event);
-      // TODO: hacer el marcador con la clase Marker y crear el objeto aca para envairlo a this.createMarker
-      let marker = new Marker(event.latlng.lat, event.latlng.lat);
+      let marker = new Marker(event.latlng.lat, event.latlng.lng);
 
       this.createMarker(event.latlng);
 
