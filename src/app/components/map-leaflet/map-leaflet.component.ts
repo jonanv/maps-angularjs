@@ -52,15 +52,15 @@ export class MapLeafletComponent implements OnInit {
   }
 
   private createPopup(latlng) {
-    const descriptionWikipedia = `
-      lat: ${latlng.lat}, lng: ${latlng.lng}
+    const description = `
+      lat: ${ latlng.lat }, lng: ${ latlng.lng }
       <button mat-raised-button color="primary">Editar</button>
       <button mat-raised-button color="warn">Eliminar</button>
     `;
     // TODO: los botones deben de estar del lado del HTML para ejecutar el remove y dentro de un ng-for
     const popupOptions = {
       coords: latlng,
-      text: descriptionWikipedia,
+      text: description,
       open: false
     };
     return popupOptions;

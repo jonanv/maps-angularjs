@@ -53,7 +53,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ***
 
-# Create file od module with comand --flat (create file in /app)
+# Create file of module with comand --flat (create file in /app)
 ```javascript
 ng generate module material --flat
 ```
@@ -68,7 +68,7 @@ ng generate component components/map --module=app.module --skipTests -is
 ```
 or
 ```javascript
-ng generate component components/map --module=app.module --skipTests -is 
+ng g c components/map --module=app.module --skipTests -is 
 ```
 
 # Server local
