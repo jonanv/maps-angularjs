@@ -81,7 +81,7 @@ export class MapGoogleComponent implements OnInit {
   }
 
   deleteMarker(i: number) {
-    console.log(i);
+    // console.log(i);
     this.markerPositions.splice(i, 1);
     this.saveMarker();
     this.snackBar.open('Marcador borrado', 'Cerrar', { duration: 3000 });
@@ -95,8 +95,15 @@ export class MapGoogleComponent implements OnInit {
     });
 
     dialogRef.afterClosed()
-      .subscribe(result => {
-        // console.log(result);
+      .subscribe((result: Marker) => {
+        if (!result) {
+          return;
+        }
+
+        this.markerPositions[i].title = result.title;
+        this.markerPositions[i].description = result.description;
+        this.saveMarker();
+        this.snackBar.open('Marcador actualizado', 'Cerrar', { duration: 3000 });
       });
   }
 

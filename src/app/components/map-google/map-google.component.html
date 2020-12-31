@@ -18,8 +18,8 @@
               (mapClick)="openInfoWindow(marker, markerPosition, i)">
                 <!-- [label]="label" [title]="title" -->
                 <map-info-window>
-                    <p><b>{{ markerLocation?.title }} {{ markerArray }}</b></p>
-                    <p>{{ markerLocation?.description }} {{ markerArray }}</p>
+                    <p><b>{{ markerLocation?.title }}</b></p>
+                    <p>{{ markerLocation?.description }}</p>
                     <p>lat: {{ markerLocation?.lat }}, lng: {{ markerLocation?.lng }}</p>
                     <div>
                         <button mat-raised-button color="primary" (click)="editMarker(markerArray)">Editar</button>

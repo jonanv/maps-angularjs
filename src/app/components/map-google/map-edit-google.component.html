@@ -1,12 +1,19 @@
-<form>
+<form autocomplete="off" [formGroup]="formDialog" (ngSubmit)="saveChanges()">
     <mat-form-field>
-        <input matInput placeholder="Título" [value]="data.title">
+        <input
+          matInput placeholder="Título"
+          formControlName="title"
+          [value]="data.title">
     </mat-form-field>
 
     <mat-form-field>
-        <textarea rows="3" matInput placeholder="Descripción">{{ data.description }}</textarea>
+        <textarea
+          rows="3"
+          matInput
+          placeholder="Descripción"
+          formControlName="description">{{ data.description }}</textarea>
     </mat-form-field>
 
-    <button mat-raised-button color="primary" (click)="saveChanges()">Editar</button>
-    <button mat-raised-button color="warn" (click)="onNoClick()" type="button">Cancelar</button>
+    <button mat-raised-button color="primary">Editar</button>
+    <button mat-raised-button color="warn" type="button" (click)="onNoClick()">Cancelar</button>
 </form>

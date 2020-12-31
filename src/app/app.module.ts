@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 // Routing
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 
 // Angular Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -36,7 +37,8 @@ import { MapEditGoogleComponent } from './components/map-google/map-edit-google.
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
