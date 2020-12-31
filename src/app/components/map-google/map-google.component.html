@@ -2,8 +2,20 @@
     <mat-card-title>Mapa</mat-card-title>
     <mat-card-content>
 
-        <google-map width="100%" height="450px" [center]="center" [zoom]="zoom" (mapClick)="addMarker($event)" (mapMousemove)="move($event)" (mapRightclick)="removeLastMarker()">
-            <map-marker #marker *ngFor="let markerPosition of markerPositions; let i = index" [position]="markerPosition" [options]="markerOptions" (mapClick)="openInfoWindow(marker, markerPosition, i)">
+        <google-map
+          width="100%"
+          height="450px"
+          [center]="center"
+          [zoom]="zoom"
+          (mapClick)="addMarker($event)"
+          (mapMousemove)="move($event)"
+          (mapRightclick)="removeLastMarker()">
+            <map-marker
+              #marker
+              *ngFor="let markerPosition of markerPositions; let i = index"
+              [position]="markerPosition"
+              [options]="markerOptions"
+              (mapClick)="openInfoWindow(marker, markerPosition, i)">
                 <!-- [label]="label" [title]="title" -->
                 <map-info-window>
                     <p><b>{{ markerLocation?.title }} {{ markerArray }}</b></p>
