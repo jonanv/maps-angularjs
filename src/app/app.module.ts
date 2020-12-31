@@ -17,14 +17,19 @@ import { MapGoogleComponent } from './components/map-google/map-google.component
 import { MapLeafletComponent } from './components/map-leaflet/map-leaflet.component';
 import { MapMapboxComponent } from './components/map-mapbox/map-mapbox.component';
 import { MapMapBox3dComponent } from './components/map-map-box3d/map-map-box3d.component';
+import { MapEditGoogleComponent } from './components/map-google/map-edit-google.component';
 
 @NgModule({
+  entryComponents: [
+    MapEditGoogleComponent
+  ],
   declarations: [
     AppComponent,
     MapGoogleComponent,
     MapLeafletComponent,
     MapMapboxComponent,
     MapMapBox3dComponent,
+    MapEditGoogleComponent
   ],
   imports: [
     BrowserModule,

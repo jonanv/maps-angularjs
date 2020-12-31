@@ -2,7 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Marker } from '../../classes/marker.class';
+
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MapEditGoogleComponent } from './map-edit-google.component';
 
 @Component({
   selector: 'app-map-google',
@@ -30,7 +33,8 @@ export class MapGoogleComponent implements OnInit {
   markerArray: number;
 
   constructor(
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {
     // let newMarker = new Marker(this.center.lat, this.center.lng);
     // this.markerPositions.push(newMarker);
@@ -81,6 +85,14 @@ export class MapGoogleComponent implements OnInit {
     this.markerPositions.splice(i, 1);
     this.saveMarker();
     this.snackBar.open('Marcador borrado', 'Cerrar', { duration: 3000 });
+  }
+
+  editMarker(i: number) {
+    let marker = this.markerPositions[i];
+    const dialogRef = this.dialog.open(MapEditGoogleComponent, {
+      width: '250px',
+      data: { title: marker.title, description: marker.description }
+    });
   }
 
   saveMarker() {

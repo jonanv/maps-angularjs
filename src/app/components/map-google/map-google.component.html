@@ -22,7 +22,7 @@
                     <p>{{ markerLocation?.description }} {{ markerArray }}</p>
                     <p>lat: {{ markerLocation?.lat }}, lng: {{ markerLocation?.lng }}</p>
                     <div>
-                        <button mat-raised-button color="primary">Editar</button>
+                        <button mat-raised-button color="primary" (click)="editMarker(markerArray)">Editar</button>
                         <button mat-raised-button color="warn" (click)="deleteMarker(markerArray)">Borrar</button>
                     </div>
                 </map-info-window>
