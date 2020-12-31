@@ -21,4 +21,11 @@ export class MapEditGoogleComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  saveChanges() {
+
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }

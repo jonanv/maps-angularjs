@@ -93,6 +93,11 @@ export class MapGoogleComponent implements OnInit {
       width: '250px',
       data: { title: marker.title, description: marker.description }
     });
+
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        // console.log(result);
+      });
   }
 
   saveMarker() {
