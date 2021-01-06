@@ -28,6 +28,7 @@ export class MapLeafletComponent implements OnInit {
   ngOnInit(): void {
     this.createMap();
     this.addMarker();
+    this.loadMarkers();
   }
 
   createMap() {
@@ -89,6 +90,7 @@ export class MapLeafletComponent implements OnInit {
       this.createMarker(event.latlng);
 
       this.markers.push(marker);
+      this.saveMarkers();
       console.log(this.markers);
     });
   }
@@ -96,5 +98,17 @@ export class MapLeafletComponent implements OnInit {
   removeMarker(i: number) {
     console.log(i);
   }
+
+  saveMarkers() {
+    localStorage.setItem('markerPositionsLeaflet', JSON.stringify(this.markers));
+  }
+
+  loadMarkers() {
+    let markers = localStorage.getItem('markerPositionsLeaflet') ? JSON.parse(localStorage.getItem('markerPositionsLeaflet')) : null;
+    if (markers) {
+      this.markers = markers;
+    }
+  }
+  // TODO: Revisar metodo de load maker ya que no carga los marcadores
 
 }
