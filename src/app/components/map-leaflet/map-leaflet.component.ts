@@ -21,7 +21,7 @@ export class MapLeafletComponent implements OnInit {
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     shadowSize: [41, 41]
   });
-  markers: Marker[] = [];
+  markerPositions: Marker[] = [];
 
   constructor() { }
 
@@ -89,9 +89,9 @@ export class MapLeafletComponent implements OnInit {
 
       this.createMarker(event.latlng);
 
-      this.markers.push(marker);
+      this.markerPositions.push(marker);
       this.saveMarkers();
-      console.log(this.markers);
+      console.log(this.markerPositions);
     });
   }
 
@@ -100,13 +100,20 @@ export class MapLeafletComponent implements OnInit {
   }
 
   saveMarkers() {
-    localStorage.setItem('markerPositionsLeaflet', JSON.stringify(this.markers));
+    localStorage.setItem('markerPositionsLeaflet', JSON.stringify(this.markerPositions));
   }
 
   loadMarkers() {
-    let markers = localStorage.getItem('markerPositionsLeaflet') ? JSON.parse(localStorage.getItem('markerPositionsLeaflet')) : null;
-    if (markers) {
-      this.markers = markers;
+    let markerPositions = localStorage.getItem('markerPositionsLeaflet') ? JSON.parse(localStorage.getItem('markerPositionsLeaflet')) : null;
+    if (markerPositions) {
+      this.markerPositions = markerPositions;
+
+      console.log(this.markerPositions);
+
+      this.markerPositions.forEach(maker => {
+        let marker = new Marker(maker.lat, maker.lng);
+        this.createMarker(marker);
+      });
     }
   }
   // TODO: Revisar metodo de load maker ya que no carga los marcadores
