@@ -55,7 +55,8 @@ export class MapLeafletComponent implements OnInit {
   private createPopup(latlng) {
     const description = `
       lat: ${ latlng.lat }, lng: ${ latlng.lng }
-      <button mat-raised-button color="primary">Editar</button>
+      <button mat-raised-button color="primary" onclick="alert('clicked')">Editar</button>
+      <button mat-raised-button color="primary" (click)="clicked()">Editar</button>
       <button mat-raised-button color="warn">Eliminar</button>
     `;
     // TODO: los botones deben de estar del lado del HTML para ejecutar el remove y dentro de un ng-for
@@ -110,12 +111,14 @@ export class MapLeafletComponent implements OnInit {
 
       console.log(this.markerPositions);
 
-      this.markerPositions.forEach(maker => {
-        let marker = new Marker(maker.lat, maker.lng);
-        this.createMarker(marker);
+      this.markerPositions.forEach(marker => {
+        let markerPosition = new Marker(marker.lat, marker.lng);
+        this.createMarker(markerPosition);
       });
     }
   }
-  // TODO: Revisar metodo de load maker ya que no carga los marcadores
 
+  clicked() {
+    alert('clickerd desde TS');
+  }
 }
