@@ -71,7 +71,7 @@ export class MapLeafletComponent implements OnInit {
   private createMarker(latlng: any) {
     const popupOptions: { coords, text, open } = this.createPopup(latlng);
     const marker = L.marker(
-      [popupOptions.coords.lat, popupOptions.coords.lng],
+      [ popupOptions.coords.lat, popupOptions.coords.lng ],
       { icon: this.smallIcon }
     );
 
@@ -91,7 +91,7 @@ export class MapLeafletComponent implements OnInit {
       this.createMarker(event.latlng);
 
       this.markerPositions.push(marker);
-      this.saveMarkers();
+      this.saveMarker();
       console.log(this.markerPositions);
     });
   }
@@ -100,7 +100,7 @@ export class MapLeafletComponent implements OnInit {
     console.log(i);
   }
 
-  saveMarkers() {
+  saveMarker() {
     localStorage.setItem('markerPositionsLeaflet', JSON.stringify(this.markerPositions));
   }
 
@@ -120,5 +120,11 @@ export class MapLeafletComponent implements OnInit {
 
   clicked() {
     alert('clickerd desde TS');
+  }
+
+  // TODO: Flata implemenar metodo removeLastMaker con boton derecho del mouse
+  removeLastMarker() {
+    this.markerPositions.pop();
+    this.saveMarker();
   }
 }

@@ -78,6 +78,7 @@ export class MapGoogleComponent implements OnInit {
 
   removeLastMarker() {
     this.markerPositions.pop();
+    this.saveMarker();
   }
 
   deleteMarker(i: number) {
